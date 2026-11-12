@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tituladora de proyectos · Escuela de Administración · UNASAM</title>
+<style>
+:root{--bg:#f2f5f8;--sf:#fff;--ink:#1c2433;--mu:#5b6578;--ln:#d5dbe3;--ac:#1b5e7a;--ac-h:#144960;--ac-l:#e8f1f5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,"Segoe UI",Arial,sans-serif}
+header,main,footer{max-width:1160px;margin:auto;padding:0 20px}
+header{padding-top:28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+h1{font:600 clamp(24px,4vw,34px)/1.2 Georgia,serif;margin:0 0 6px}
+h2{font:600 18px Georgia,serif;margin:18px 0 6px}
+h2:first-child{margin-top:0}
+.sub{color:var(--mu);margin:0 0 16px;max-width:75ch}
+.top-actions{display:flex;gap:8px;margin-bottom:16px}
+main{display:grid;grid-template-columns:minmax(310px,430px) 1fr;gap:20px;align-items:start;padding-bottom:20px}
+@media(max-width:860px){main{grid-template-columns:1fr}}@media(max-width:480px){.g2{grid-template-columns:1fr}header,main,footer{padding:0 12px}}
+footer ul{margin:4px 0 8px;padding-left:18px}
+.t .x:focus{background:#f2f5f8}
+.box{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:18px}
+label{display:block;font-weight:600;font-size:13px;margin:10px 0 3px}
+input,select{width:100%;padding:8px 10px;border:1px solid var(--ln);border-radius:6px;background:#fff;color:var(--ink);font:inherit}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+details{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:10px 16px;margin-top:12px}
+summary{cursor:pointer;font:600 17px Georgia,serif}
+details p,details li{margin:8px 0}
+details h3{font:600 15px system-ui;margin:14px 0 2px;color:var(--ac)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+button{font:inherit;cursor:pointer;border:1px solid var(--ln);background:#fff;color:var(--ink);border-radius:6px;padding:6px 12px;transition:background .15s,border-color .15s}
+button:hover{background:#f8fafc;border-color:#b8c2d0}
+button.p{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:600;width:100%;padding:10px;margin-top:18px}
+button.p:hover{background:var(--ac-h)}
+button.s{font-size:13px;padding:5px 10px;color:var(--mu)}
+.hint{font-size:12px;color:var(--mu);margin-top:4px}
+#warn div{padding:8px 12px;border-radius:6px;margin-bottom:8px;font-size:14px;background:#fff3d1;color:#7a4f00}
+#warn div.e{background:#fde4e4;color:#9b1c1c}
+.empty{color:var(--mu);padding:36px 8px;text-align:center}
+.res-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--ln)}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-size:12px;font-weight:600;background:var(--ac-l);color:var(--ac);padding:3px 9px;border-radius:99px}
+.t{border:1px solid var(--ln);border-left:4px solid var(--ac);border-radius:8px;padding:12px 14px;margin-bottom:12px;background:#fff}
+.t .k{font-size:12px;font-weight:600;color:var(--mu);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.t .x{font:600 18px/1.35 Georgia,serif;outline:none;padding:3px 4px;border-radius:4px}
+.t .m{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:var(--mu)}
+.wc.over{color:#9b1c1c;font-weight:600}
+.t-btns{display:flex;gap:6px}
+footer{font-size:13px;color:var(--mu);border-top:1px solid var(--ln);padding-top:12px;padding-bottom:28px}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 16px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:99}
+#toast.on{opacity:1}
+@media print{header .top-actions,main>section:first-child,.res-bar,.t-btns,.hint{display:none!important}main{display:block}.box{border:none;padding:0}}
+</style>
+</head>
+<body>
+<header>
+<div>
+<h1>Tituladora de proyectos</h1>
+<p class="sub">Escuela de Administración · UNASAM. Arma títulos de investigación a nivel correlacional y explicativo, para diseños bivariados y multivariados, con género y número gramatical coherentes y sin repetir referencias geográficas.</p>
+</div>
+<div class="top-actions">
+<button type="button" class="s" id="demo">Cargar ejemplo</button>
+<button type="button" class="s" id="clr">Limpiar</button>
+</div>
+</header>
+<main>
+<section class="box" aria-label="Datos del proyecto">
+<h2>Diseño</h2>
+<div class="g2">
+<div><label for="ni">Nivel de estudio</label><select id="ni"><option value="c">Correlacional</option><option value="e">Explicativo</option></select></div>
+<div><label for="di">Diseño de variables</label><select id="di"><option value="b">Bivariada</option><option value="m">Multivariada</option></select></div>
+</div>
+<h2>Variables</h2>
+<label for="v1" id="l1">Variable 1</label><input id="v1" placeholder="Ej.: Liderazgo transformacional">
+<div id="b3" hidden>
+<label for="rl">Rol de la variable adicional</label>
+<select id="rl"><option value="i">Otra variable independiente</option><option value="m">Variable mediadora</option><option value="o">Variable moderadora</option></select>
+<label for="v3">Variable adicional</label><input id="v3" placeholder="Ej.: Clima organizacional">
+</div>
+<label for="v2" id="l2">Variable 2</label><input id="v2" placeholder="Ej.: Desempeño laboral">
+<h2>Unidad de análisis y delimitación</h2>
+<label for="po">Población o unidad de análisis</label><input id="po" placeholder="Ej.: trabajadores administrativos">
+<label for="og">Institución o empresa (opcional)</label><input id="og" placeholder="Ej.: Municipalidad Provincial de Huaraz">
+<label for="ar">Artículo de la institución</label>
+<select id="ar"><option value="a">Automático</option><option value="el">el</option><option value="la">la</option><option value="los">los</option><option value="las">las</option><option value="-">Ninguno</option></select>
+<div class="g2">
+<div><label for="lu">Delimitación espacial</label><input id="lu" placeholder="Ej.: Huaraz, Áncash"></div>
+<div><label for="te">Delimitación temporal</label><input id="te" placeholder="Ej.: 2026"></div>
+</div>
+<p class="hint">Si el lugar ya aparece en la institución o la población, se omite (aunque lo escribas sin comas). Separa con comas los nombres de varias palabras.</p>
+<button type="button" class="p" id="go">Generar títulos</button>
+</section>
+<section class="box" aria-live="polite">
+<div id="warn"></div>
+<div id="out"><div class="empty">Completa los datos y pulsa «Generar títulos».</div></div>
+</section>
+</main>
+<section style="max-width:1160px;margin:0 auto;padding:0 20px 16px">
+<details open><summary>Marco metodológico: cómo se construye un buen título</summary>
+<h3>Qué es el título y qué función cumple</h3><p>El título es la expresión más breve del problema de investigación: nombra las variables, la unidad de análisis y la delimitación del estudio. Según Hernández-Sampieri y Mendoza (2018), conviene redactarlo cuando el planteamiento ya está claro, de modo que refleje el alcance real del estudio y no prometa más de lo que la investigación puede demostrar. Bernal (2016) y Arias (2012) coinciden en que debe ser preciso, informativo y sin expresiones superfluas («estudio sobre», «contribución al análisis de»), y en que pasa de lo general a lo concreto sin convertirse en una oración larga.</p>
+<h3>Método estructural y secuencial (Vara-Horna)</h3><p>Vara-Horna (2012) propone siete pasos para una tesis en ciencias empresariales y exige que el título nazca de un problema ya delimitado en lo conceptual, espacial y temporal. Por eso esta herramienta pide variables, unidad de análisis, lugar y periodo: el título debe contener esos elementos y usar los mismos términos que luego figurarán en el problema, los objetivos y la matriz de consistencia.</p>
+<h3>Nivel correlacional</h3><p>Evalúa el grado de asociación entre dos o más variables en un contexto particular, sin atribuir causalidad (Hernández-Sampieri y Mendoza, 2018; Supo y Zacarías, 2020). Se redacta con fórmulas como «Relación entre A y B en…» o «Análisis de la relación entre…». Se evitan «efecto», «influencia», «impacto» o «determinantes», porque implican dirección causal.</p>
+<h3>Nivel explicativo</h3><p>Busca responder por las causas de los fenómenos y por qué se relacionan las variables. Se redacta con «Influencia de A en B», «Efecto de A sobre B» o «A y su influencia en B». La variable independiente (la que explica) va primero y la dependiente (la explicada) después. Ñaupas et al. (2018) y Carrasco (2019) recuerdan que la explicación exige un diseño y un sustento teórico que respalden la relación causal propuesta, no solo su redacción en el título.</p>
+<h3>Diseño multivariado</h3><p>Con una variable independiente adicional se listan ambas («Influencia conjunta de A y C en B»). Si la variable adicional es <b>mediadora</b>, explica el mecanismo por el cual A llega a B («a través de C»); si es <b>moderadora</b>, cambia la fuerza o el sentido de la relación entre A y B. Confirma con tu asesor que el diseño estadístico y la matriz de operacionalización respalden el rol elegido.</p>
+<h3>Redacción y correspondencia (Vara y Villanueva, guía UNASAM)</h3><p>La guía metodológica de la UNASAM exige correspondencia estricta entre título, problema, objetivos e hipótesis: lo que el título nombra debe aparecer en todos ellos, con los mismos términos y en el mismo orden. En estudios no experimentales evita verbos o sustantivos de intervención («mejora», «implementación», «reducción»).</p>
+<p class="hint">Resumen basado en las obras listadas al pie; verifica las citas y páginas en las ediciones originales y en el reglamento vigente de tu facultad.</p>
+</details>
+<details><summary>Lista de verificación del título</summary>
+<ul><li>Menciona todas las variables, con el mismo nombre que usarás en la matriz de consistencia.</li><li>Indica la población o unidad de análisis, el lugar y el periodo.</li><li>No repite el lugar si ya está dentro del nombre de la institución o de la población.</li><li>El verbo o la fórmula corresponde al nivel de estudio: relación (correlacional) o influencia (explicativo).</li><li>Tiene como máximo unas 20 palabras y no incluye abreviaturas poco conocidas.</li><li>Coherencia vertical y horizontal: título, problema, objetivo e hipótesis tratan las mismas variables en el mismo orden.</li></ul>
+</details>
+</section>
+<footer id="cred"></footer>
+<div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),V=i=>$('#'+i).value.trim();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const lc=s=>/^[A-ZÁÉÍÓÚÑ]{2,}(?![A-Za-zÁÉÍÓÚÑáéíóúñ])/.test(s)?s:s.charAt(0).toLowerCase()+s.slice(1);
+const lst=a=>a.length<2?a[0]:a.slice(0,-1).join(', ')+' y '+a[a.length-1];
+
+const norm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9ñ ]/g,' ').replace(/\s+/g,' ').trim();
+const EL=/^(banco|colegio|hospital|instituto|centro|ministerio|gobierno|distrito|sector|mercado|club|consorcio|grupo|fondo|servicio|proyecto|programa|sistema|complejo|comite|consejo|ejercito|sindicato|poder|hotel|restaurante|supermercado|gremio|municipio|ayuntamiento|directorio|taller|laboratorio|establecimiento|poder)$/;
+const LA=/^(red|cruz|luz|paz|clinica|camara|caja|facultad|universidad|empresa|asociacion|cooperativa|compania|sociedad|municipalidad|institucion|corporacion|direccion|gerencia|oficina|agencia|escuela|junta|comunidad|federacion|superintendencia|fundacion|organizacion|ong)$/;
+const de=a=>a==='el'?'del':a?'de '+a:'de';
+
+function inst(o,m){o=(o||'').trim();if(!o)return{a:'',n:''};
+ const p=o.split(/\s+/),f=p[0],w=norm(f);
+ if(/^(el|la|los|las)$/.test(w)&&p.length>1)return{a:w,n:pc(p.slice(1).join(' '))};
+ if(m&&m!=='a')return{a:m==='-'?'':m,n:pc(o)};
+ if(f.length>1&&f===f.toUpperCase()&&/[A-ZÁÉÍÓÚÑ]/.test(f))return{a:'',n:pc(o)};
+ const pl=w.length>3&&/s$/.test(w)&&!/(is|us)$/.test(w),s=[w,w.slice(0,-1),w.slice(0,-2)];
+ const g=s.some(x=>EL.test(x))?'m':s.some(x=>LA.test(x))?'f':/(a|as|ion|iones|dad|dades|tad|umbre|itis|ez)$/.test(w)?'f':'m';
+ return{a:pl?(g==='m'?'los':'las'):(g==='m'?'el':'la'),n:pc(o)}}
+
+const pc=s=>s!==s.toLowerCase()?s:s.split(' ').map((w,i)=>i&&/^(de|del|la|las|los|el|y|e|en)$/.test(w)?w:w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+
+function lugar(luVal,ctxt){const base=' '+norm(ctxt)+' ',seen=[],out=[],LEAD=/^(provincia|distrito|departamento|region|ciudad|localidad|provincial|distrital|regional)$/,STOP=/^(de|del|la|las|los|el|y)$/;
+ const has=a=>base.includes(' '+a.map(t=>t[1]).join(' ')+' ');
+ luVal.split(/[,;\/]/).forEach(p=>{let t=p.trim().split(/\s+/).map(x=>[x,norm(x)]).filter(x=>x[1]);
+  while(t.length>1&&LEAD.test(t[0][1]))t.shift();
+  if(t.length&&!has(t)){
+   for(let k=t.length-1;k>=1;k--)if(has(t.slice(0,k))&&t.slice(0,k).some(x=>x[1].length>2)){t=t.slice(k);break}
+   for(let k=t.length-1;k>=1;k--)if(has(t.slice(-k))&&t.slice(-k).some(x=>x[1].length>2)){t=t.slice(0,-k);break}}
+  while(t.length&&STOP.test(t[0][1]))t.shift();while(t.length&&STOP.test(t[t.length-1][1]))t.pop();
+  if(!t.length||has(t))return;const n=t.map(x=>x[1]).join(' ');if(seen.includes(n))return;seen.push(n);out.push(pc(t.map(x=>x[0]).join(' ')))});
+ return out}
+
+const fix=t=>t.replace(/(?<![\wáéíóúñÁÉÍÓÚÑ])de el(?![\wáéíóúñÁÉÍÓÚÑ])/g,'del').replace(/(?<![\wáéíóúñÁÉÍÓÚÑ])a el(?![\wáéíóúñÁÉÍÓÚÑ])/g,'al').replace(/\s+/g,' ').replace(/\s+([,.;:?])/g,'$1').replace(/,(\s*,)+/g,',').replace(/([,;:])(?=[^\s\d])/g,'$1 ').trim();
+
+/* ====== EDITA AQUÍ: créditos ====== */
+const COMPL=['Ñaupas, H., Valdivia, M. R., Palacios, J. J. y Romero, H. E. (2018). Metodología de la investigación cuantitativa-cualitativa y redacción de la tesis (5.ª ed.). Ediciones de la U.',
+'Carrasco, S. (2019). Metodología de la investigación científica: pautas metodológicas para diseñar y elaborar el proyecto de investigación. Editorial San Marcos.',
+'Bernal, C. A. (2016). Metodología de la investigación: administración, economía, humanidades y ciencias sociales (4.ª ed.). Pearson.',
+'Supo, J. y Zacarías, H. (2020). Metodología de la investigación científica (3.ª ed.). Bioestadístico EIRL.',
+'Arias, F. G. (2012). El proyecto de investigación: introducción a la metodología científica (6.ª ed.). Episteme.',
+'Hernández-Sampieri, R. y Mendoza, C. P. (2018). Metodología de la investigación: las rutas cuantitativa, cualitativa y mixta. McGraw-Hill.',
+'Vara-Horna, A. A. (2012). Desde la idea hasta la sustentación: siete pasos para una tesis exitosa. Universidad de San Martín de Porres.'];
+const CREDITS='[Completar: nombre formal de quien elabora la herramienta] · Escuela de Administración, Universidad Nacional Santiago Antúnez de Mayolo (UNASAM).';
+/* ================================== */
+$('#cred').innerHTML='<strong>Lecturas de referencia</strong><ul>'+COMPL.map(r=>'<li>'+esc(r)+'</li>').join('')+'</ul><strong>Créditos:</strong> '+esc(CREDITS);
+
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1800)}
+function copy(t,msg='Título copiado'){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast(msg)).catch(()=>{const a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();try{document.execCommand('copy');toast(msg)}catch(_){toast('No se pudo copiar')}a.remove()})}
+
+function sync(){const e=V('ni')==='e',m=V('di')==='m';$('#b3').hidden=!m;
+ $('#l1').textContent=e?'Variable independiente':'Variable 1';$('#l2').textContent=e?'Variable dependiente':'Variable 2'}
+$('#ni').onchange=$('#di').onchange=sync;sync();
+
+$('#demo').onclick=()=>{
+ $('#ni').value='c';$('#di').value='b';sync();
+ $('#v1').value='Liderazgo transformacional';
+ $('#v2').value='Desempeño laboral';
+ $('#po').value='trabajadores administrativos';
+ $('#og').value='Municipalidad Provincial de Huaraz';
+ $('#ar').value='a';
+ $('#lu').value='Huaraz, Áncash';
+ $('#te').value='2026';
+ $('#go').click();
+};
+$('#clr').onclick=()=>{
+ ['v1','v2','v3','po','og','lu','te'].forEach(id=>$('#'+id).value='');
+ $('#ar').value='a';$('#warn').innerHTML='';
+ $('#out').innerHTML='<div class="empty">Completa los datos y pulsa «Generar títulos».</div>';
+};
+
+function ambito(){const po=V('po'),og=V('og'),I=inst(og,V('ar')),lu=lugar(V('lu'),po+' '+og);
+ let s='';
+ if(po)s=' en '+lc(po)+(og?' '+de(I.a)+' '+I.n:'');
+ else if(og)s=' en '+(I.a?I.a+' ':'')+I.n;
+ const r=[...lu];if(V('te'))r.push(V('te'));
+ if(r.length)s+=(s?', ':' en ')+r.join(', ');
+ return s}
+
+function titulos(){const e=V('ni')==='e',m=V('di')==='m',r=V('rl'),A=lc(V('v1')),B=lc(V('v2')),C=lc(V('v3')),x=ambito(),T=[];
+ if(!e){const L=m?lst([A,C,B]):lst([A,B]);
+  T.push(['Opción 1 · Directa',`Relación entre ${L}${x}`],['Opción 2 · Analítica',`Análisis de la relación entre ${L}${x}`],['Opción 3 · Descriptiva-correlacional',`${cap(L)}${x}: estudio correlacional`])}
+ else if(!m||r==='i'){const I=m?lst([A,C]):A;
+  T.push(['Opción 1 · Directa',`Influencia ${m?'conjunta ':''}de ${I} en ${B}${x}`],['Opción 2 · Causal directa',`Efecto ${m?'conjunto ':''}de ${I} sobre ${B}${x}`],['Opción 3 · Nominal',`${cap(I)} y su influencia ${m?'conjunta ':''}en ${B}${x}`])}
+ else if(r==='m')
+  T.push(['Opción 1 · Mediación explícita',`Influencia de ${A} en ${B}: rol mediador de ${C}${x}`],['Opción 2 · Enfoque mediador',`${cap(C)} como variable mediadora entre ${A} y ${B}${x}`],['Opción 3 · Ruta causal',`Efecto de ${A} sobre ${B} a través de ${C}${x}`]);
+ else
+  T.push(['Opción 1 · Moderación explícita',`Influencia de ${A} en ${B}: ${C} como variable moderadora${x}`],['Opción 2 · Efecto moderador',`Efecto moderador de ${C} en la relación entre ${A} y ${B}${x}`],['Opción 3 · Interacción',`${cap(A)} y ${B}: rol moderador de ${C}${x}`]);
+ return T.map(([k,t])=>[k,fix(t)])}
+
+function wordInfo(txt){
+ const n=txt.trim()?txt.trim().split(/\s+/).length:0;
+ return {n,html:`<span class="wc${n>20?' over':''}">${n} palabra${n===1?'':'s'}${n>20?' · conviene acortarlo (máx. recomendado: 20)':''}</span>`};
+}
+
+function dlWord(selectedTitle){
+ const e=V('ni')==='e',m=V('di')==='m';
+ const nivel=e?'Explicativo':'Correlacional';
+ const diseno=m?'Multivariado':'Bivariado';
+ const vars=m?`${V('v1')}, ${V('v3')} y ${V('v2')}`:`${V('v1')} y ${V('v2')}`;
+ const h=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>Propuesta de Título</title><style>body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.5}table{border-collapse:collapse;width:100%;margin-top:12px}td,th{border:1px solid #333;padding:8px;text-align:left;vertical-align:top}th{background:#e8f1f5;width:32%}</style></head><body><h2>Ficha de Propuesta de Título de Investigación</h2><table><tr><th>Título propuesto</th><td><strong>${esc(selectedTitle)}</strong></td></tr><tr><th>Nivel de estudio</th><td>${nivel}</td></tr><tr><th>Diseño</th><td>${diseno}</td></tr><tr><th>Variables</th><td>${esc(vars)}</td></tr><tr><th>Población / Unidad</th><td>${esc(V('po')||'—')}</td></tr><tr><th>Institución / Empresa</th><td>${esc(V('og')||'—')}</td></tr><tr><th>Delimitación espacial</th><td>${esc(V('lu')||'—')}</td></tr><tr><th>Delimitación temporal</th><td>${esc(V('te')||'—')}</td></tr></table><p style="margin-top:16px;font-size:9pt;color:#555">${esc(CREDITS)}</p></body></html>`;
+ const a=document.createElement('a'),u=URL.createObjectURL(new Blob(['\ufeff',h],{type:'application/msword'}));
+ a.href=u;a.download='propuesta-titulo-tesis.doc';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);
+}
+
+const CAUSAL=/\b(efecto|influencia|impacto|causa|determinante)/;
+$('#go').onclick=()=>{const w=[],m=V('di')==='m',e=V('ni')==='e',N=[V('v1'),V('v2'),...(m?[V('v3')]:[])];
+ if(N.some(n=>!n))w.push(['e',m?'Ingresa las tres variables.':'Ingresa las dos variables.']);
+ else if(new Set(N.map(norm)).size<N.length)w.push(['e','Hay variables con el mismo nombre.']);
+ if(!e&&N.some(n=>CAUSAL.test(norm(n))))w.push(['w','Una variable contiene un término causal (efecto, influencia, impacto…): en el nivel correlacional no se atribuye causalidad.']);
+ if(!V('po')&&!V('og'))w.push(['w','Falta la población o la institución: el título quedará sin unidad de análisis.']);
+ if(!V('lu'))w.push(['w','Falta la delimitación espacial.']);
+ else if(V('lu')&&!lugar(V('lu'),V('po')+' '+V('og')).length)w.push(['w','El lugar ya figura en la institución o la población; se omitió para no repetirlo.']);
+ if(!V('te'))w.push(['w','Falta la delimitación temporal.']);
+ $('#warn').innerHTML=w.map(([c,t])=>`<div class="${c}">${esc(t)}</div>`).join('');
+ if(w.some(x=>x[0]==='e')){$('#out').innerHTML='<div class="empty">Corrige los datos señalados para generar los títulos.</div>';return}
+
+ const items=titulos();
+ $('#out').innerHTML=`
+ <div class="res-bar">
+   <div class="badges">
+     <span class="badge">Nivel: ${e?'Explicativo':'Correlacional'}</span>
+     <span class="badge">Diseño: ${m?'Multivariado':'Bivariado'}</span>
+   </div>
+   <div style="display:flex;gap:6px">
+     <button type="button" class="s" id="copyAll">Copiar las 3 opciones</button>
+     <button type="button" class="s" onclick="window.print()">Imprimir / PDF</button>
+   </div>
+ </div>`+
+ items.map(([k,t],i)=>{t=cap(t);const wi=wordInfo(t);return `<div class="t"><div class="k"><span>${k}</span></div><div class="x" contenteditable="true" data-wi="${i}" id="t${i}">${esc(t)}</div><div class="m"><span id="w${i}">${wi.html}</span><div class="t-btns"><button type="button" class="s" data-dl="${i}">Descargar Word</button><button type="button" data-i="${i}">Copiar</button></div></div></div>`}).join('')+
+ '<p class="hint">Haz clic sobre cualquier título para editarlo libremente (el contador de palabras se actualiza al instante). Verifica la redacción final con tu asesor.</p>';
+
+ $('#copyAll').onclick=()=>{
+   const all=[0,1,2].map(i=>`${items[i][0]}: ${$('#t'+i).innerText.replace(/\s+/g,' ').trim()}`).join('\n\n');
+   copy(all,'Las 3 opciones fueron copiadas');
+ };
+};
+
+document.addEventListener('input',e=>{
+ const el=e.target.closest('[data-wi]');
+ if(el){
+   const idx=el.dataset.wi;
+   const txt=el.innerText.replace(/\s+/g,' ').trim();
+   $('#w'+idx).innerHTML=wordInfo(txt).html;
+ }
+});
+
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button[data-i]');
+ if(b)copy($('#t'+b.dataset.i).innerText.replace(/\s+/g,' ').trim());
+ const d=e.target.closest('button[data-dl]');
+ if(d)dlWord($('#t'+d.dataset.dl).innerText.replace(/\s+/g,' ').trim());
+});
+</script>
+</body>
+</html>
